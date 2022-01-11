@@ -1,21 +1,27 @@
 package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.nft21.NFT.NFT;
+import com.example.nft21.NFT.NFTAdapter;
 import com.example.nft21.NFT.Utils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,26 +41,36 @@ import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ArrayAdapter<NFT> nfts;
+    //private ArrayAdapter<NFT> nfts;
+
+    private NFTAdapter nftAdapter;
     private ArrayList<NFT> nftArrayList;
     private Context context;
+
+    private RecyclerView nftRV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        nftRV = findViewById(R.id.listNft);
+
         context = getApplicationContext();
 
         Button button = findViewById(R.id.button);
-        ListView listView = findViewById(R.id.listview);
 
         nftArrayList = new ArrayList<>();
-        nfts = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,nftArrayList);
 
-        listView.setAdapter(nfts);
+        nftAdapter = new NFTAdapter(context, nftArrayList);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+
+        nftRV.setLayoutManager(linearLayoutManager);
+        nftRV.setAdapter(nftAdapter);
 
         requestOpenSea();
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,10 +78,11 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     private void requestOpenSea(){
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=alienfrensnft";
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=2&collection=alienfrensnft";
 
         Ion.with(context)
         .load(urlCollection)
@@ -101,9 +118,11 @@ public class HomeActivity extends AppCompatActivity {
                         price = Double.parseDouble(tempo.substring(0, 2)) / 10;
                     }
 
-                    nfts.add(new NFT(name, img, description, price, Utils.mostViewed()));
+                    nftAdapter.add(new NFT(name, img, description, price, Utils.mostViewed()));
                 }
+
             }
         });
     }
+
 }

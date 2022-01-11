@@ -16,14 +16,12 @@ import okhttp3.*;
 
 public class NFT implements Parcelable {
 
-    public static ArrayList<NFT> nfts;
 
     private Double price;
     private String description;
     private String img;
     private String name;
     private Boolean mostViewed;
-
 
     public NFT(String name, String img, String description, Double price, Boolean mostViewed){
         this.name = name;
@@ -34,64 +32,45 @@ public class NFT implements Parcelable {
 
     }
 
-    public static ArrayList<NFT> getNfts(){
-        return NFT.nfts;
+
+    public Double getPrice() {
+        return price;
     }
 
-    public static void requestOpenSea(){
+    public void setPrice(Double price) {
+        this.price = price;
+    }
 
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=50&collection=alienfrensnft";
-        NFT.nfts = new ArrayList<>();
+    public String getDescription() {
+        return description;
+    }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(urlCollection)
-                .build();
+    public String getImg() {
+        return img;
+    }
 
+    public void setImg(String img) {
+        this.img = img;
+    }
 
-        client.newCall(request).enqueue(new Callback() {
-            public void onResponse(Call call, Response response)
-                    throws IOException {
-                try {
-                    JSONObject jsonObject = new JSONObject(response.body().string());
+    public String getName() {
+        return name;
+    }
 
-                    JSONArray jsonArray = jsonObject.getJSONArray("assets");
+    public void setName(String name) {
+        this.name = name;
+    }
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
+    public Boolean getMostViewed() {
+        return mostViewed;
+    }
 
-                        JSONObject curent = jsonArray.getJSONObject(i);
-
-                        JSONObject asset_contract = curent.getJSONObject("asset_contract");
-
-                        String description = asset_contract.getString("description"),
-                                img = curent.getString("image_original_url"),
-                                name = curent.getString("name");
-
-                        Double price = 0.0;
-
-                        if (curent.isNull("sell_orders")){
-                            price = Utils.randomEthPrice();
-                        }else{
-                            String tempo = curent.getJSONArray("sell_orders").getJSONObject(0)
-                                    .getString("current_price");
-
-                            price = Double.parseDouble(tempo.substring(0,2)) / 10;
-                        }
-
-                        NFT.nfts.add(new NFT(name,img,description,price,Utils.mostViewed()));
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-        });
-
+    public void setMostViewed(Boolean mostViewed) {
+        this.mostViewed = mostViewed;
     }
 
     protected NFT(Parcel in) {
