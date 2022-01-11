@@ -1,7 +1,10 @@
 package com.example.nft21.NFT;
 
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
 
 import com.koushikdutta.ion.Ion;
 
@@ -73,10 +76,18 @@ public class NFT implements Parcelable {
         this.mostViewed = mostViewed;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     protected NFT(Parcel in) {
+        description = in.readString();
+        name = in.readString();
+        img = in.readString();
+        price = in.readDouble();
+        mostViewed = in.readBoolean();
+
     }
 
     public static final Creator<NFT> CREATOR = new Creator<NFT>() {
+        @RequiresApi(api = Build.VERSION_CODES.Q)
         @Override
         public NFT createFromParcel(Parcel in) {
             return new NFT(in);
@@ -93,8 +104,15 @@ public class NFT implements Parcelable {
         return 0;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(description);
+        parcel.writeString(name);
+        parcel.writeString(img);
+        parcel.writeDouble(price);
+        parcel.writeBoolean(mostViewed);
+
     }
 
 

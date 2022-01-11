@@ -58,31 +58,21 @@ public class HomeActivity extends AppCompatActivity {
 
         context = getApplicationContext();
 
-        Button button = findViewById(R.id.button);
-
         nftArrayList = new ArrayList<>();
 
         nftAdapter = new NFTAdapter(context, nftArrayList);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.VERTICAL, false);
 
         nftRV.setLayoutManager(linearLayoutManager);
         nftRV.setAdapter(nftAdapter);
 
         requestOpenSea();
 
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
-
     }
 
     private void requestOpenSea(){
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=2&collection=alienfrensnft";
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=5&collection=alienfrensnft";
 
         Ion.with(context)
         .load(urlCollection)
