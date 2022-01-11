@@ -7,14 +7,19 @@
     tools:context=".HomeActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listNft"
-        android:layout_width="412dp"
-        android:layout_height="615dp"
-        android:layout_marginTop="100dp"
+    <GridView
+        android:id="@+id/shop_grid"
+        android:layout_width="match_parent"
+        android:layout_height="472dp"
+        android:clipToPadding="false"
+        android:columnWidth="500dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.92" />
 </androidx.constraintlayout.widget.ConstraintLayout>

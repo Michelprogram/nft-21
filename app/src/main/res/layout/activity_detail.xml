@@ -8,20 +8,21 @@
 
     <ImageView
         android:id="@+id/imgNFTDetail"
-        android:layout_width="272dp"
-        android:layout_height="240dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="345dp"
+        android:layout_height="353dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:contentDescription="TODO" />
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="44dp"
         android:text="Price :"
         android:textSize="34sp"
@@ -46,17 +47,24 @@
         android:text="2.5"
         android:textSize="34sp"
         app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.78"
         app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/imgNFTDetail" />
 
     <TextView
         android:id="@+id/descriptionDetail"
-        android:layout_width="259dp"
-        android:layout_height="209dp"
+        android:layout_width="356dp"
+        android:layout_height="340dp"
         android:text="TextView"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.401"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/priceDetail" />
+        app:layout_constraintTop_toBottomOf="@+id/priceDetail"
+        app:layout_constraintVertical_bias="0.059"
+        android:fontFamily="@font/comfortaa"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

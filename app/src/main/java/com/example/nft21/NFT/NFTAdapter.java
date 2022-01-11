@@ -1,85 +1,53 @@
 package com.example.nft21.NFT;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.nft21.DetailActivity;
 import com.example.nft21.R;
 import com.squareup.picasso.Picasso;
 
+
+
 import java.util.ArrayList;
 
-public class NFTAdapter extends RecyclerView.Adapter<NFTAdapter.Viewholder> {
+public class NFTAdapter extends ArrayAdapter<NFT> {
 
+    private ArrayList<NFT> nfts = new ArrayList<>();
     private Context context;
-    private ArrayList<NFT> NFTArrayList;
+
 
     public NFTAdapter(Context context, ArrayList<NFT> NFTModelArray) {
+        super(context, 0, NFTModelArray);
+        this.nfts = NFTModelArray;
         this.context = context;
-        this.NFTArrayList = NFTModelArray;
-    }
-
-    public void add(NFT nft){
-        NFTArrayList.add(nft);
-    }
-
-    public void clean(){
-        NFTArrayList.clear();
     }
 
     @Override
-    public NFTAdapter.Viewholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
-        return new Viewholder(view);
+    public int getCount() {
+        return nfts.size();
     }
 
     @Override
-    public void onBindViewHolder(NFTAdapter.Viewholder holder, int position) {
-        NFT model = NFTArrayList.get(position);
-        Picasso.get().load(model.getImg()).into(holder.imgNFT);
-        holder.descriptionNFT.setText(model.getDescription());
-        holder.priceNFT.setText("" + model.getPrice());
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-    @Override
-    public int getItemCount() {
-        return NFTArrayList.size();
-    }
+        View listItem = convertView;
 
-    public class Viewholder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        if(listItem == null)
+            listItem = LayoutInflater.from(context).inflate(R.layout.card_layout,parent,false);
 
-        private ImageView imgNFT;
-        private TextView priceNFT, descriptionNFT;
+        NFT nft = nfts.get(position);
 
-        public Viewholder(View itemView) {
-            super(itemView);
-            itemView.setClickable(true);
-            itemView.setOnClickListener(this);
-            imgNFT = itemView.findViewById(R.id.imgNFT);
-            priceNFT = itemView.findViewById(R.id.priceNft);
-            descriptionNFT = itemView.findViewById(R.id.descriptionNft);
-        }
+        ImageView image = listItem.findViewById(R.id.shop_img);
 
-        @Override
-        public void onClick(View view) {
+        Picasso.get().load(nft.getImg()).into(image);
 
-            Intent intent = new Intent(context, DetailActivity.class);
+        TextView name = listItem.findViewById(R.id.shop_price);
+        name.setText(nft.getPrice().toString());
 
-            intent.putExtra("NFT", NFTArrayList.get(getAdapterPosition()));
-
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            context.startActivity(intent);
-
-        }
-
+        return listItem;
     }
 }

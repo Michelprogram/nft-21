@@ -21,13 +21,13 @@ public class DetailActivity extends AppCompatActivity {
 
 
         ImageView img = findViewById(R.id.imgNFTDetail);
-        TextView price = findViewById(R.id.priceDetail),
-                description = findViewById(R.id.descriptionDetail);
+        TextView price = findViewById(R.id.priceDetail);
+        TextView description = findViewById(R.id.descriptionDetail);
 
         Picasso.get().load(nft.getImg()).into(img);
 
         price.setText(nft.getPrice().toString());
-        price.setText(nft.getDescription());
+        description.setText(nft.getDescription());
 
     }
 }

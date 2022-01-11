@@ -5,7 +5,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTAdapter;
@@ -29,34 +33,45 @@ public class HomeActivity extends AppCompatActivity {
 
     private NFTAdapter nftAdapter;
     private ArrayList<NFT> nftArrayList;
+
     private Context context;
 
-    private RecyclerView nftRV;
+    private GridView gridView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nftRV = findViewById(R.id.listNft);
-
         context = getApplicationContext();
 
         nftArrayList = new ArrayList<>();
 
-        nftAdapter = new NFTAdapter(context, nftArrayList);
-
         requestOpenSea();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.VERTICAL, false);
+        gridView = findViewById(R.id.shop_grid);
 
-        nftRV.setLayoutManager(linearLayoutManager);
-        nftRV.setAdapter(nftAdapter);
+        nftAdapter = new NFTAdapter(this, nftArrayList);
+
+        gridView.setAdapter(nftAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
+
+                intent.putExtra("NFT", nftAdapter.getItem(i));
+
+                startActivity(intent);
+
+            }
+        });
 
     }
 
     private void requestOpenSea(){
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=5&collection=alienfrensnft";
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10&collection=alienfrensnft";
 
         Ion.with(context)
         .load(urlCollection)
