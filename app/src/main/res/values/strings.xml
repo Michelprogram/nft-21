@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NFT21</string>
+    <string name="appTitleText">NFT 21</string>
+    <string name="registerButtonText">Register</string>
+    <string name="loginButtonText">LOG IN</string>
+    <string name="creditsText"><![CDATA[Daryl Caruso & Dorian Gauron]]></string>
 </resources>
