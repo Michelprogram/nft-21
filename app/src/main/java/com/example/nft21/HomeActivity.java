@@ -1,27 +1,20 @@
 package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTAdapter;
 import com.example.nft21.NFT.Utils;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
-import com.squareup.picasso.Picasso;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,19 +22,10 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.concurrent.ExecutionException;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
-    //private ArrayAdapter<NFT> nfts;
 
     private NFTAdapter nftAdapter;
     private ArrayList<NFT> nftArrayList;
@@ -62,12 +46,12 @@ public class HomeActivity extends AppCompatActivity {
 
         nftAdapter = new NFTAdapter(context, nftArrayList);
 
+        requestOpenSea();
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(HomeActivity.this, LinearLayoutManager.VERTICAL, false);
 
         nftRV.setLayoutManager(linearLayoutManager);
         nftRV.setAdapter(nftAdapter);
-
-        requestOpenSea();
 
     }
 
@@ -110,9 +94,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     nftAdapter.add(new NFT(name, img, description, price, Utils.mostViewed()));
                 }
-
             }
         });
     }
-
 }

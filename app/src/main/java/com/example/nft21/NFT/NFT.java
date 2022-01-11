@@ -68,11 +68,11 @@ public class NFT implements Parcelable {
         this.name = name;
     }
 
-    public Boolean getMostViewed() {
+    public Integer getMostViewed() {
         return mostViewed;
     }
 
-    public void setMostViewed(Boolean mostViewed) {
+    public void setMostViewed(Integer mostViewed) {
         this.mostViewed = mostViewed;
     }
 
@@ -82,7 +82,7 @@ public class NFT implements Parcelable {
         name = in.readString();
         img = in.readString();
         price = in.readDouble();
-        mostViewed = in.readBoolean();
+        mostViewed = in.readInt();
 
     }
 
@@ -111,7 +111,7 @@ public class NFT implements Parcelable {
         parcel.writeString(name);
         parcel.writeString(img);
         parcel.writeDouble(price);
-        parcel.writeBoolean(mostViewed);
+        parcel.writeInt(mostViewed);
 
     }
 
@@ -119,7 +119,7 @@ public class NFT implements Parcelable {
     @Override
     public String toString() {
         return "Une NFT du nom de "+name+" de "+ price + "ETH" + " description : " +description+
-                "url img : " + img + (mostViewed ? "le plus vue" :"");
+                "url img : " + img + (mostViewed == 1 ? "le plus vue" :"");
     }
 
 
