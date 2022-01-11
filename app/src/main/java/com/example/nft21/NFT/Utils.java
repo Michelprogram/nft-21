@@ -13,11 +13,11 @@ public class Utils {
         return Double.parseDouble(tempo);
     }
 
-    public static Boolean mostViewed(){
+    public static Integer mostViewed(){
         Integer MAX = 5;
         Integer result = (int)(Math.random() * MAX);
 
-        return result == MAX - 1;
+        return (result == MAX - 1) ? 1 : 0;
     }
 
     public static Double convertEthToEuro(){

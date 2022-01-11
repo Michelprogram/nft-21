@@ -28,7 +28,6 @@ public class NFTAdapter extends RecyclerView.Adapter<NFTAdapter.Viewholder> {
     }
 
     public void add(NFT nft){
-        System.out.println(nft.getImg());
         NFTArrayList.add(nft);
     }
 
@@ -71,11 +70,10 @@ public class NFTAdapter extends RecyclerView.Adapter<NFTAdapter.Viewholder> {
 
         @Override
         public void onClick(View view) {
-            System.out.println("OUIIIIIIIIIIIIII"+ getAdapterPosition());
 
             Intent intent = new Intent(context, DetailActivity.class);
 
-            intent.putExtra("NFT", "oui");
+            intent.putExtra("NFT", NFTArrayList.get(getAdapterPosition()));
 
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 

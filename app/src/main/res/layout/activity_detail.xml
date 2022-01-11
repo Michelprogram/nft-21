@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".DetailActivity">
 
+    <ImageView
+        android:id="@+id/imgNFTDetail"
+        android:layout_width="272dp"
+        android:layout_height="240dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="44dp"
+        android:text="Price :"
+        android:textSize="34sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgNFTDetail" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="67dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgNFTDetail"
+        app:srcCompat="@drawable/eth" />
+
+    <TextView
+        android:id="@+id/priceDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="2.5"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/imgNFTDetail" />
+
+    <TextView
+        android:id="@+id/descriptionDetail"
+        android:layout_width="259dp"
+        android:layout_height="209dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/priceDetail" />
 </androidx.constraintlayout.widget.ConstraintLayout>

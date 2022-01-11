@@ -24,9 +24,9 @@ public class NFT implements Parcelable {
     private String description;
     private String img;
     private String name;
-    private Boolean mostViewed;
+    private Integer mostViewed;
 
-    public NFT(String name, String img, String description, Double price, Boolean mostViewed){
+    public NFT(String name, String img, String description, Double price, Integer mostViewed){
         this.name = name;
         this.img = img;
         this.description = description;
