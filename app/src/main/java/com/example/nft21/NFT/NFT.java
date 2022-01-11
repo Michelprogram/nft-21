@@ -3,23 +3,16 @@ package com.example.nft21.NFT;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.koushikdutta.ion.Ion;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 
 public class NFT implements Parcelable {
 
@@ -101,7 +94,6 @@ public class NFT implements Parcelable {
 
     }
 
-
     protected NFT(Parcel in) {
     }
 
@@ -125,8 +117,6 @@ public class NFT implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
     }
-
-
 
 
     @Override
