@@ -68,11 +68,11 @@
             android:minHeight="48dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/registerNextButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:backgroundTint="#000000"
-            android:text="Button"
+            android:text="@string/registerNextButtonText"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
