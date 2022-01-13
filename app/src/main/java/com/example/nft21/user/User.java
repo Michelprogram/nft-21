@@ -7,11 +7,13 @@ public class User implements Parcelable {
     private String username;
     private String email;
     private String password;
+    private String PP;
 
-    public User(String username,String email,String password){
+    public User(String username,String email,String password,String PP){
         this.username = username;
         this.email = email;
         this.password = password;
+        this.PP = PP;
     }
 
     @Override
@@ -24,12 +26,14 @@ public class User implements Parcelable {
         dest.writeString(username);
         dest.writeString(email);
         dest.writeString(password);
+        dest.writeString(PP);
     }
 
     protected User(Parcel in) {
         username = in.readString();
         email = in.readString();
         password = in.readString();
+        PP = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
