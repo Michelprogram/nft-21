@@ -1,8 +1,6 @@
 package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTAdapter;
@@ -18,13 +17,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -34,9 +31,13 @@ public class HomeActivity extends AppCompatActivity {
     private NFTAdapter nftAdapter;
     private ArrayList<NFT> nftArrayList;
 
+    private ArrayList<NFT> nftArrayListMostViewved;
+
     private Context context;
 
     private GridView gridView;
+
+    private CarouselView carouselView;
 
 
     @Override
@@ -53,8 +54,12 @@ public class HomeActivity extends AppCompatActivity {
         gridView = findViewById(R.id.shop_grid);
 
         nftAdapter = new NFTAdapter(this, nftArrayList);
+        nftArrayListMostViewved = new ArrayList<>();
 
         gridView.setAdapter(nftAdapter);
+
+        carouselView = findViewById(R.id.carouselView);
+
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,8 +75,22 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void setCarouselView(){
+        carouselView.setPageCount(nftArrayListMostViewved.size());
+        carouselView.setImageListener(imageListener);
+
+        ImageListener imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                Picasso.get().load(nftArrayListMostViewved.get(position).getImg()).into(imageView);
+            }
+        };
+
+
+    }
+
     private void requestOpenSea(){
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=2&collection=alienfrensnft";
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10&collection=alienfrensnft";
 
         Ion.with(context)
         .load(urlCollection)
@@ -107,8 +126,16 @@ public class HomeActivity extends AppCompatActivity {
                         price = Double.parseDouble(tempo.substring(0, 2)) / 10;
                     }
 
-                    nftAdapter.add(new NFT(name, img, description, price, Utils.mostViewed()));
+                    NFT nft = new NFT(name, img, description, price, Utils.mostViewed());
+
+
+                    if (nft.getMostViewed() == 0)
+                        nftArrayListMostViewved.add(nft);
+
+                    nftAdapter.add(nft);
+
                 }
+                setCarouselView();
             }
         });
     }
