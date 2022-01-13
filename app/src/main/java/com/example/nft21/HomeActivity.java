@@ -71,12 +71,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void requestOpenSea(){
-        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10&collection=alienfrensnft";
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=2&collection=alienfrensnft";
 
         Ion.with(context)
         .load(urlCollection)
         .asJsonObject()
-        .setCallback(new FutureCallback<JsonObject>() {
+         .setCallback(new FutureCallback<JsonObject>() {
             @Override
             public void onCompleted(Exception e, JsonObject result) {
 
