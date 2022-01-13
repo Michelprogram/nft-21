@@ -68,11 +68,11 @@
             android:minHeight="48dp" />
 
         <Button
-            android:id="@+id/signUpButton"
+            android:id="@+id/loginBValidateButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:backgroundTint="#000000"
-            android:text="@string/registerNextButtonText"
+            android:text="@string/loginButtonText"
             android:textColor="#FFFFFF" />
     </LinearLayout>
 

@@ -17,7 +17,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Button loginButton = (Button) findViewById(R.id.signUpButton);
+        Button loginButton = (Button) findViewById(R.id.loginBValidateButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
