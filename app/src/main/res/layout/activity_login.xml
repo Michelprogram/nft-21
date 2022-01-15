@@ -31,8 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/registerViewTitle"
-                app:layout_constraintTop_toTopOf="@+id/registerViewTitle"
-                app:srcCompat="@drawable/nft" />
+                app:layout_constraintTop_toTopOf="@+id/registerViewTitle" />
 
             <TextView
                 android:id="@+id/registerViewTitle"

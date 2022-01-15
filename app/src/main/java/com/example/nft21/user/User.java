@@ -3,6 +3,8 @@ package com.example.nft21.user;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Objects;
+
 public class User implements Parcelable {
     private String username;
     private String email;
@@ -47,5 +49,18 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, email, password, PP);
+    }
 }
 //https://api.unsplash.com/search/photos/?client_id=i-2wKyejotToqVenHUZx5GkWdaqCE3UmIzYSTF81dV0&query=marble
