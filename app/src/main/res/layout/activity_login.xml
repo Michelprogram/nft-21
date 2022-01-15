@@ -49,7 +49,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
-            android:id="@+id/usernameEdit"
+            android:id="@+id/emailEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -67,7 +67,7 @@
             android:minHeight="48dp" />
 
         <Button
-            android:id="@+id/loginBValidateButton"
+            android:id="@+id/registerNextButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:backgroundTint="#000000"

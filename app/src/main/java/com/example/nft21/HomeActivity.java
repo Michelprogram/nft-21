@@ -8,9 +8,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.nft21.user.User;
+
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
     private final int LOGIN_REQUEST_CODE = 21;
     private final int REGISTER_REQUEST_CODE = 12;
+    private ArrayList<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
