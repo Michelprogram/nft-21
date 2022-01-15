@@ -50,12 +50,13 @@ public class User implements Parcelable {
         }
     };
 
+    //deux utilisateurs sont égaux s'ils possèdent le même username
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) && Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        return Objects.equals(username, user.username);
     }
 
     @Override
