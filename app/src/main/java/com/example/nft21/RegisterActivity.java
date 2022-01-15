@@ -9,6 +9,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.nft21.user.User;
+
+import java.util.ArrayList;
+
 public class RegisterActivity extends AppCompatActivity {
     private final int REGISTER_NEXT_REQUEST_CODE = 11;
 
@@ -17,6 +21,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        //récupération de la liste des utilisateurs
+        Bundle extras = getIntent().getExtras();
+        ArrayList<User> users = extras.getParcelableArrayList("users");
 
         EditText emailEdit = (EditText) findViewById(R.id.emailEdit);
         EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);

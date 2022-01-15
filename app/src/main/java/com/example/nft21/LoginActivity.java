@@ -2,8 +2,12 @@ package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.nft21.user.User;
 
@@ -21,8 +25,33 @@ public class LoginActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         ArrayList<User> users = extras.getParcelableArrayList("users");
 
-        for(User user : users){
-            System.out.println(user);
-        }
+        EditText usernameEdit = (EditText) findViewById(R.id.loginUsernameEdit);
+        EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
+
+        Button loginButton = (Button) findViewById(R.id.loginViewButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //on vérifie que les champs sont bien remplis :
+                String username = usernameEdit.getText().toString();
+                String password = passwordEdit.getText().toString();
+
+                if(!username.isEmpty() && !password.isEmpty()){
+                    //on simule un nouvel utilisateur pour vérifier s'il n'existe pas déjà
+                    User user = new User(username,"john@doe.com",password);
+
+                    for(User u : users){
+                        if(u.equals(user))//si l'utilisateur existe déjà
+                            System.out.println("L'utilisateur existe dejaaaa");
+                    }
+
+                    /*
+                    Intent request = new Intent(RegisterActivity.this,RegisterActivityNext.class);
+                    request.putExtra("email",email);
+                    request.putExtra("password",password);
+                    startActivity(request);*/
+                }
+            }
+        });
     }
 }
