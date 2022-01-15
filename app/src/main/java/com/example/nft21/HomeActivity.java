@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivityForResult(request,LOGIN_REQUEST_CODE);
+                startActivity(request);
             }
         });
 
@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,RegisterActivity.class);
-                startActivityForResult(request,REGISTER_REQUEST_CODE);
+                startActivity(request);
             }
         });
 

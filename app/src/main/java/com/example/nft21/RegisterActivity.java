@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent request = new Intent(RegisterActivity.this,RegisterActivityNext.class);
                     request.putExtra("email",email);
                     request.putExtra("password",password);
-                    startActivityForResult(request,REGISTER_NEXT_REQUEST_CODE);
+                    startActivity(request);
                 }
             }
         });

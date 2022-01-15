@@ -11,11 +11,11 @@ public class User implements Parcelable {
     private String password;
     private String PP;
 
-    public User(String username,String email,String password,String PP){
+    public User(String username,String email,String password){
         this.username = username;
         this.email = email;
         this.password = password;
-        this.PP = PP;
+        this.PP = "profile_picture";
     }
 
     @Override
@@ -61,6 +61,10 @@ public class User implements Parcelable {
     @Override
     public int hashCode() {
         return Objects.hash(username, email, password, PP);
+    }
+
+    public String toString(){
+        return "User "+username+" with email : " + email + " has password : "+ password + "\n";
     }
 }
 //https://api.unsplash.com/search/photos/?client_id=i-2wKyejotToqVenHUZx5GkWdaqCE3UmIzYSTF81dV0&query=marble

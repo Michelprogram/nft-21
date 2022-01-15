@@ -50,21 +50,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
-            android:id="@+id/emailEdit"
+            android:id="@+id/usernameEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/userNameHint"
-            android:inputType="textPersonName|textEmailAddress"
+            android:inputType="textPersonName"
             android:minHeight="48dp" />
 
         <Button
-            android:id="@+id/registerNextButton"
+            android:id="@+id/signUpButton"
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:backgroundTint="#000000"
             android:text="@string/signUpButtonText"
             android:textColor="#FFFFFF" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
