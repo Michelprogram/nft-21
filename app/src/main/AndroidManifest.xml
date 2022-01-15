@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NFT21">
         <activity
+            android:name=".RegisterActivityNext"
+            android:exported="true" />
+        <activity
             android:name=".CartActivity"
             android:exported="true" />
         <activity

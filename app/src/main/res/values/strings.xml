@@ -7,4 +7,7 @@
     <string name="registerTitleText">Register</string>
     <string name="emailHint">jane@doe.com</string>
     <string name="passwordHint">password</string>
+    <string name="registerNextButtonText">Next</string>
+    <string name="userNameHint">username</string>
+    <string name="signUpButtonText">SIGN UP</string>
 </resources>
