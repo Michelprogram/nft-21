@@ -74,6 +74,16 @@
             android:backgroundTint="#000000"
             android:text="@string/loginButtonText" />
 
+        <TextView
+            android:id="@+id/loginErrorText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fieldsEmptyText"
+            android:textColor="#F44336"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

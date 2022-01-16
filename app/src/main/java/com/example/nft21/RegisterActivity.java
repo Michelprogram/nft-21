@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.nft21.user.User;
 
@@ -28,11 +29,14 @@ public class RegisterActivity extends AppCompatActivity {
 
         EditText usernameEdit = (EditText) findViewById(R.id.registerUsernameEdit);
         EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
+        TextView errorText = (TextView) findViewById(R.id.registerErrorText);
 
         Button signUpButton = (Button) findViewById(R.id.registerSignUpButton);
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                errorText.setVisibility(View.INVISIBLE);
+
                 //on vérifie que les champs sont bien remplis :
                 String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
@@ -43,7 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                     for(User u : users){
                         if(u.equals(user)) {//si l'utilisateur existe dejà
-                            System.out.println("Le nom d'utilisateur est déjà pris !!");
+                            errorText.setText(R.string.usernameTakenText);
+                            errorText.setVisibility(View.VISIBLE);
                             return;
                         }
                     }
@@ -52,8 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
                     request.putExtra("user",user);
                     startActivity(request);
 
+                }else{
+                    errorText.setText(R.string.fieldsEmptyText);
+                    errorText.setVisibility(View.VISIBLE);
                 }
-            }
+                }
         });
     }
 }

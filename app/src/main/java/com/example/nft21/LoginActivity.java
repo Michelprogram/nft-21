@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.nft21.user.User;
 
@@ -27,11 +28,14 @@ public class LoginActivity extends AppCompatActivity {
 
         EditText usernameEdit = (EditText) findViewById(R.id.loginUsernameEdit);
         EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
+        TextView errorText = (TextView) findViewById(R.id.loginErrorText);
 
         Button loginButton = (Button) findViewById(R.id.loginViewButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                errorText.setVisibility(View.INVISIBLE);
+
                 //on vérifie que les champs sont bien remplis :
                 String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
@@ -48,13 +52,19 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(request);
                                 return;
                             }else{
-                                System.out.println("Mot de passe incorrect !");
+                                errorText.setText(R.string.incorrectPasswordText);
+                                errorText.setVisibility(View.VISIBLE);
                                 return;
                             }
                         }
                     }
-                    System.out.println("Le nom d'utilisateur n'existe pas !!");
-            }
+                    errorText.setText(R.string.unknownUsernameText);
+                    errorText.setVisibility(View.VISIBLE);
+            }else{
+                    errorText.setText(R.string.fieldsEmptyText);
+                    errorText.setVisibility(View.VISIBLE);
+                }
+
             }
         });
     }

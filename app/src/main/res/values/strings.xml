@@ -10,4 +10,8 @@
     <string name="registerNextButtonText">Next</string>
     <string name="userNameHint">username</string>
     <string name="signUpButtonText">SIGN UP</string>
+    <string name="incorrectPasswordText">Le mot de passe est incorrect, veuillez réessayer</string>
+    <string name="unknownUsernameText">Le nom d\'utilisateur n\'existe pas, veuillez réessayer</string>
+    <string name="usernameTakenText">Ce nom d\'utilisateur est déjà pris, veuillez en choisir un autre</string>
+    <string name="fieldsEmptyText">Veuillez remplir les champs indiqués</string>
 </resources>
