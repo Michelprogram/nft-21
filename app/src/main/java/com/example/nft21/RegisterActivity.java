@@ -26,22 +26,32 @@ public class RegisterActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         ArrayList<User> users = extras.getParcelableArrayList("users");
 
-        EditText emailEdit = (EditText) findViewById(R.id.emailEdit);
+        EditText usernameEdit = (EditText) findViewById(R.id.registerUsernameEdit);
         EditText passwordEdit = (EditText) findViewById(R.id.passwordEdit);
 
-        Button registerNextButton = (Button) findViewById(R.id.registerNextButton);
-        registerNextButton.setOnClickListener(new View.OnClickListener() {
+        Button signUpButton = (Button) findViewById(R.id.registerSignUpButton);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //on vérifie que les champs sont bien remplis :
-                String email = emailEdit.getText().toString();
+                String username = usernameEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
 
-                if(!email.isEmpty() && !password.isEmpty()){
-                    Intent request = new Intent(RegisterActivity.this,RegisterActivityNext.class);
-                    request.putExtra("email",email);
-                    request.putExtra("password",password);
+                if(!username.isEmpty() && !password.isEmpty()){
+                    //on simule un nouvel utilisateur pour vérifier s'il n'existe pas déjà
+                    User user = new User(username,password);
+
+                    for(User u : users){
+                        if(u.equals(user)) {//si l'utilisateur existe dejà
+                            System.out.println("Le nom d'utilisateur est déjà pris !!");
+                            return;
+                        }
+                    }
+
+                    Intent request = new Intent(RegisterActivity.this,ProfileActivity.class);
+                    request.putExtra("user",user);
                     startActivity(request);
+
                 }
             }
         });

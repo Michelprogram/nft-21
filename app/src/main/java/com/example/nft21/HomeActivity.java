@@ -16,8 +16,8 @@ public class HomeActivity extends AppCompatActivity {
     private final int LOGIN_REQUEST_CODE = 21;
     private final int REGISTER_REQUEST_CODE = 12;
     private ArrayList<User> users = new ArrayList(){{
-       add(new User("dcaruso8","daryltron@gmail.com","deriendorian"));
-       add(new User("dorian21","dorianisugly@gmail.com","jsuistropmoche"));
+       add(new User("dcaruso8","deriendorian"));
+       add(new User("dorian21","jsuistropmoche"));
     }};
 
     @Override
@@ -43,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,RegisterActivity.class);
+                request.putParcelableArrayListExtra("users",users);
                 startActivity(request);
             }
         });

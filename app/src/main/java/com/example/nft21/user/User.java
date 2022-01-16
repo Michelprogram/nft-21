@@ -7,15 +7,17 @@ import java.util.Objects;
 
 public class User implements Parcelable {
     private String username;
-    private String email;
     private String password;
     private String PP;
 
-    public User(String username,String email,String password){
+    public User(String username,String password){
         this.username = username;
-        this.email = email;
         this.password = password;
         this.PP = "profile_picture";
+    }
+
+    public String getPassword(){
+        return this.password;
     }
 
     @Override
@@ -26,14 +28,12 @@ public class User implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int i) {
         dest.writeString(username);
-        dest.writeString(email);
         dest.writeString(password);
         dest.writeString(PP);
     }
 
     protected User(Parcel in) {
         username = in.readString();
-        email = in.readString();
         password = in.readString();
         PP = in.readString();
     }
@@ -61,11 +61,11 @@ public class User implements Parcelable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, password, PP);
+        return Objects.hash(username, password, PP);
     }
 
     public String toString(){
-        return "User "+username+" with email : " + email + " has password : "+ password + "\n";
+        return "User "+username+" has password : "+ password + "\n";
     }
 }
 //https://api.unsplash.com/search/photos/?client_id=i-2wKyejotToqVenHUZx5GkWdaqCE3UmIzYSTF81dV0&query=marble

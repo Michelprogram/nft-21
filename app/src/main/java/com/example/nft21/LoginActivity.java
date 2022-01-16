@@ -38,19 +38,23 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(!username.isEmpty() && !password.isEmpty()){
                     //on simule un nouvel utilisateur pour vérifier s'il n'existe pas déjà
-                    User user = new User(username,"john@doe.com",password);
+                    User user = new User(username,password);
 
                     for(User u : users){
-                        if(u.equals(user))//si l'utilisateur existe déjà
-                            System.out.println("L'utilisateur existe dejaaaa");
+                        if(u.equals(user)) {//si l'utilisateur existe bien
+                            if(u.getPassword().equals(password)){//on vérifie si le mdp est correct
+                                Intent request = new Intent(LoginActivity.this,ProfileActivity.class);
+                                request.putExtra("user",u);
+                                startActivity(request);
+                                return;
+                            }else{
+                                System.out.println("Mot de passe incorrect !");
+                                return;
+                            }
+                        }
                     }
-
-                    /*
-                    Intent request = new Intent(RegisterActivity.this,RegisterActivityNext.class);
-                    request.putExtra("email",email);
-                    request.putExtra("password",password);
-                    startActivity(request);*/
-                }
+                    System.out.println("Le nom d'utilisateur n'existe pas !!");
+            }
             }
         });
     }
