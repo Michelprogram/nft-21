@@ -1,5 +1,5 @@
 package com.example.nft21.user;
-import com.example.nft21.nft.NFT;
+import com.example.nft21.NFT.NFT;
 
 import java.util.List;
 

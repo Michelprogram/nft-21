@@ -1,20 +1,9 @@
-package com.example.nft21.nft;
+package com.example.nft21.NFT;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.RequiresApi;
-
-import com.koushikdutta.ion.Ion;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
-import okhttp3.*;
 
 public class NFT implements Parcelable {
 
