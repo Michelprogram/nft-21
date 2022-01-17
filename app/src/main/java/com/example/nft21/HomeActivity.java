@@ -8,9 +8,17 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.nft21.user.User;
+
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
     private final int LOGIN_REQUEST_CODE = 21;
     private final int REGISTER_REQUEST_CODE = 12;
+    private ArrayList<User> users = new ArrayList(){{
+       add(new User("dcaruso8","deriendorian"));
+       add(new User("dorian21","jsuistropmoche"));
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,21 +26,25 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //login
         Button loginButton = (Button) findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,LoginActivity.class);
-                startActivityForResult(request,LOGIN_REQUEST_CODE);
+                request.putParcelableArrayListExtra("users",users);
+                startActivity(request);
             }
         });
 
+        //register
         Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,RegisterActivity.class);
-                startActivityForResult(request,REGISTER_REQUEST_CODE);
+                request.putParcelableArrayListExtra("users",users);
+                startActivity(request);
             }
         });
 
