@@ -2,6 +2,7 @@ package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -44,9 +45,24 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent request = new Intent(HomeActivity.this,RegisterActivity.class);
                 request.putParcelableArrayListExtra("users",users);
-                startActivity(request);
+                startActivityForResult(request,REGISTER_REQUEST_CODE);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode , int resultCode, Intent data ) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == REGISTER_REQUEST_CODE) {
+            User createdUser = data.getParcelableExtra("user");
+            System.out.println(createdUser);
+            users.add(createdUser);
+
+            //redirection vers la page profile
+            Intent profileIntent = new Intent(HomeActivity.this,ProfileActivity.class);
+            profileIntent.putExtra("currentUser",createdUser);
+            startActivity(profileIntent);
+        }
     }
 }

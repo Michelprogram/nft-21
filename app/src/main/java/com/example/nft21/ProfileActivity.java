@@ -22,7 +22,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         //récupération de l'utilisateur
         Bundle extras = getIntent().getExtras();
-        User user = extras.getParcelable("user");
+        User user = extras.getParcelable("currentUser");
 
         TextView usernameTextView = (TextView) findViewById(R.id.profileUsername);
         if(user!=null){

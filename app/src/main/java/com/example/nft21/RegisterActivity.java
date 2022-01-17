@@ -2,6 +2,7 @@ package com.example.nft21;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -53,9 +54,12 @@ public class RegisterActivity extends AppCompatActivity {
                         }
                     }
 
-                    Intent request = new Intent(RegisterActivity.this,ProfileActivity.class);
-                    request.putExtra("user",user);
-                    startActivity(request);
+                    users.add(user);//on ajoute l'utilisateur dans la liste
+                    //Intent request = new Intent(RegisterActivity.this,ProfileActivity.class);
+                    Intent intent = new Intent();
+                    intent.putExtra("user",user);
+                    setResult(Activity.RESULT_OK,intent);
+                    finish();
 
                 }else{
                     errorText.setText(R.string.fieldsEmptyText);
