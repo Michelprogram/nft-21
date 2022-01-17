@@ -8,28 +8,39 @@
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="238dp"
-        android:layout_height="319dp"
+        android:layout_width="243dp"
+        android:layout_height="260dp"
         android:layout_marginTop="16dp"
+        android:bottomLeftRadius="20dip"
+        android:bottomRightRadius="20dip"
+        android:topLeftRadius="20dip"
+        android:topRightRadius="20dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app_logo"
-        android:bottomRightRadius="20dip"
-        android:bottomLeftRadius="20dip"
-        android:topRightRadius="20dip"
-        android:topLeftRadius="20dip"/>
+        app:srcCompat="@drawable/app_logo" />
 
     <TextView
         android:id="@+id/profileUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:textSize="24sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/profilePicture"
         app:layout_constraintStart_toStartOf="@+id/profilePicture"
         app:layout_constraintTop_toBottomOf="@+id/profilePicture"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/profileCity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profileCityText"
+        android:textColor="#0B0B0B"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/profileUsername"
+        app:layout_constraintStart_toStartOf="@+id/profileUsername"
+        app:layout_constraintTop_toBottomOf="@+id/profileUsername" />
 </androidx.constraintlayout.widget.ConstraintLayout>
