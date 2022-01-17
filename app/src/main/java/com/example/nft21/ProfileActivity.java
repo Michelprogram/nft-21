@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.example.nft21.user.User;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,9 @@ public class ProfileActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         User user = extras.getParcelable("user");
 
-        System.out.println(user);
+        TextView usernameTextView = (TextView) findViewById(R.id.profileUsername);
+        if(user!=null){
+            usernameTextView.setText(user.getUsername());
+        }
     }
 }
