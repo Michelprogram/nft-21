@@ -76,9 +76,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setCarouselView(){
-        carouselView.setPageCount(nftArrayListMostViewved.size());
-        carouselView.setImageListener(imageListener);
-
         ImageListener imageListener = new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
@@ -86,7 +83,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
-
+        carouselView.setPageCount(nftArrayListMostViewved.size());
+        carouselView.setImageListener(imageListener);
     }
 
     private void requestOpenSea(){
