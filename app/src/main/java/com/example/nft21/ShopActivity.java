@@ -50,8 +50,4 @@ public class ShopActivity extends AppCompatActivity {
     public void viderPanier(User client) {
         panier.replace(client,new ArrayList<NFT>());
     }
-
-    public List<NFT> listerCommandes(User client) {
-        return panier.get(client);
-    }
 }
