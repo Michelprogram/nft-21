@@ -88,9 +88,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/cartTotalPriceEuros"
+            app:layout_constraintStart_toEndOf="@+id/cartTotalPriceEuros"
             app:layout_constraintTop_toTopOf="@+id/cartTotalPriceEuros"
             app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/euro"
-            tools:layout_editor_absoluteX="258dp" />
+            app:srcCompat="@drawable/euro" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

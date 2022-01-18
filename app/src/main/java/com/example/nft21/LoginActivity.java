@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
                     for(User u : users){
                         if(u.equals(user)) {//si l'utilisateur existe bien
                             if(u.getPassword().equals(password)){//on vérifie si le mdp est correct
-                                Intent request = new Intent(LoginActivity.this,ProfileActivity.class);
+                                Intent request = new Intent(LoginActivity.this,ShopActivity.class);
                                 request.putExtra("currentUser",u);
                                 startActivity(request);
                                 return;

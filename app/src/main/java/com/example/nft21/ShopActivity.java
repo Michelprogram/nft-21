@@ -3,6 +3,7 @@ package com.example.nft21;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -22,6 +23,23 @@ public class ShopActivity extends AppCompatActivity implements iPanier {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+        //création du panier
+        User daryl = new User("dcaruso8","deriendorian");
+        ArrayList<NFT> nfts = new ArrayList<>();
+        nfts.add(new NFT("nft trop bien","img","un nft que nathan adore",0.5,0));
+        nfts.add(new NFT("nft bof","img1","un nft que dorian adore",1.6,1));
+        nfts.add(new NFT("nft trop nul","img","un nft que emma adore",0.1,0));
+        panier.put(daryl,nfts);
+
+        //calcul du montant et transfer à l'activité panier
+        double totalETH = this.consulterMontantPanierETH(daryl);
+        double totalEuros = this.consulterMontantPanierEuros(daryl);
+
+        Intent intent = new Intent(ShopActivity.this,CartActivity.class);
+        intent.putExtra("totalETH",totalETH);
+        intent.putExtra("totalEuros",totalEuros);
+        startActivity(intent);
     }
 
     //------------------------------------gestion du panier--------------------------------

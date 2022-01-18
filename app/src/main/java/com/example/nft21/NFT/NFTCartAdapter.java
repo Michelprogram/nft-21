@@ -8,17 +8,17 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.nft21.R;
-import com.squareup.picasso.Picasso;
+//import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class NFTAdapter extends ArrayAdapter<NFT> {
+public class NFTCartAdapter extends ArrayAdapter<NFT> {
 
     private ArrayList<NFT> nfts = new ArrayList<>();
     private Context context;
 
 
-    public NFTAdapter(Context context, ArrayList<NFT> NFTModelArray) {
+    public NFTCartAdapter(Context context, ArrayList<NFT> NFTModelArray) {
         super(context, 0, NFTModelArray);
         this.nfts = NFTModelArray;
         this.context = context;
@@ -29,6 +29,7 @@ public class NFTAdapter extends ArrayAdapter<NFT> {
         return nfts.size();
     }
 
+    /*
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -47,5 +48,5 @@ public class NFTAdapter extends ArrayAdapter<NFT> {
         name.setText(nft.getPrice().toString());
 
         return listItem;
-    }
+    }*/
 }
