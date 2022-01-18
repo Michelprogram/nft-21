@@ -39,13 +39,58 @@
         app:layout_constraintTop_toBottomOf="@+id/cartTitleText"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/cartTotalPriceEuros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="156dp"
-        android:text="1500"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="409dp"
+        android:layout_height="228dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/cartTotalPriceEuros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:text="1500"
+            android:textColor="#000000"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/cartTotalPriceETH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="1.5"
+            android:textColor="#000000"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@+id/cartTotalPriceEuros"
+            app:layout_constraintEnd_toEndOf="@+id/cartTotalPriceEuros"
+            app:layout_constraintStart_toStartOf="@+id/cartTotalPriceEuros" />
+
+        <ImageView
+            android:id="@+id/ethLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/cartTotalPriceETH"
+            app:layout_constraintStart_toEndOf="@+id/cartTotalPriceETH"
+            app:layout_constraintTop_toTopOf="@+id/cartTotalPriceETH"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ether" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/cartTotalPriceEuros"
+            app:layout_constraintTop_toTopOf="@+id/cartTotalPriceEuros"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/euro"
+            tools:layout_editor_absoluteX="258dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
