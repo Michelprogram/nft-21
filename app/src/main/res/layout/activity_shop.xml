@@ -48,11 +48,27 @@
                     app:srcCompat="@drawable/cart" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="515dp"
+                android:layout_height="433dp"
+                android:layout_marginStart="109dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="109dp"
+                app:auto_cycle="true"
+                app:corner_radius="20"
+                app:delay="0"
+                app:placeholder="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                app:period="3000" />
+
             <GridView
                 android:id="@+id/shop_grid"
-                android:layout_width="593dp"
-                android:layout_height="657dp"
-                android:layout_marginTop="224dp"
+                android:layout_width="779dp"
+                android:layout_height="870dp"
+                android:layout_marginTop="172dp"
                 android:clipToPadding="false"
                 android:columnWidth="500dp"
                 android:horizontalSpacing="10dp"
@@ -60,27 +76,11 @@
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.359"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/carouselView">
+                app:layout_constraintTop_toBottomOf="@+id/image_slider">
 
             </GridView>
-
-            <com.synnapps.carouselview.CarouselView
-                android:id="@+id/carouselView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="80dp"
-                app:fillColor="#FFFFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:pageColor="#00000000"
-                app:radius="6dp"
-                app:slideInterval="3000"
-                app:strokeColor="#FF777777"
-                app:strokeWidth="1dp"
-                tools:ignore="MissingConstraints" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

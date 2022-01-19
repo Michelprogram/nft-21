@@ -17,6 +17,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTAdapter;
 import com.example.nft21.NFT.Utils;
@@ -24,12 +26,6 @@ import com.example.nft21.user.User;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.koushikdutta.async.future.FutureCallback;
-import com.koushikdutta.ion.Ion;
-import com.koushikdutta.ion.builder.Builders;
-import com.squareup.picasso.Picasso;
-import com.synnapps.carouselview.CarouselView;
-import com.synnapps.carouselview.ImageListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,11 +46,11 @@ public class ShopActivity extends AppCompatActivity {
     private Map<User, ArrayList<NFT>> panier = new HashMap<>();//panier
     private User currentUser;
     private NFTAdapter nftAdapter;
-    private ArrayList<NFT> nftArrayList;
-    private ArrayList<NFT> nftArrayListMostViewved;
     private Context context;
     private GridView gridView;
-    private CarouselView carouselView;
+
+    private ImageSlider imageSlider;
+    private List<SlideModel> slideModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,9 +71,10 @@ public class ShopActivity extends AppCompatActivity {
         gridView = findViewById(R.id.shop_grid);
 
         nftAdapter = new NFTAdapter(this, nftArrayList);
-        nftArrayListMostViewved = new ArrayList<>();
         gridView.setAdapter(nftAdapter);
-        carouselView = findViewById(R.id.carouselView);
+
+        imageSlider = findViewById(R.id.image_slider);
+        slideModels = new ArrayList<>();
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -196,12 +193,16 @@ public class ShopActivity extends AppCompatActivity {
                                     NFT nft = new NFT(name, img, description, price, Utils.mostViewed());
 
 
+
                                     if (nft.getMostViewed() == 0)
-                                        nftArrayListMostViewved.add(nft);
+                                        slideModels.add(new SlideModel(nft.getImg()));
+
 
                                     nftAdapter.add(nft);
 
                                 }
+
+                                setSlider();
                             }
                         });
 
@@ -209,4 +210,11 @@ public class ShopActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void setSlider(){
+
+        imageSlider.setImageList(slideModels, true);
+    }
+
+
 }

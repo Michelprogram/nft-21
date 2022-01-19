@@ -17,15 +17,9 @@ public class Utils {
         Integer MAX = 5;
         Integer result = (int)(Math.random() * MAX);
 
+        System.out.println(result);
+
         return (result == MAX - 1) ? 1 : 0;
-    }
-
-    public static Double convertEthToEuro(){
-        return 0.0;
-    }
-
-    public static Double convertEuroToEth(){
-        return 0.0;
     }
 
 }
