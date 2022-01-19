@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.nft21.R;
-//import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -39,9 +39,8 @@ public class NFTCartAdapter extends ArrayAdapter<NFT> {
         NFT nft = nfts.get(position);
 
         //Nft image
-        /*
         ImageView image = listItem.findViewById(R.id.nftImageView);
-        Picasso.get().load(nft.getImg()).into(image);*/
+        Picasso.get().load(nft.getImg()).into(image);
 
         //Nft name
         TextView name = listItem.findViewById(R.id.nftTitleText);

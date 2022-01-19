@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 
 public class RegisterActivity extends AppCompatActivity {
     private final int REGISTER_NEXT_REQUEST_CODE = 11;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,5 +69,22 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 }
         });
+
+        //play sound
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wii_sports_title);
+        if(!mediaPlayer.isPlaying())
+            mediaPlayer.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null) {
+            mediaPlayer.pause();
+            if (isFinishing()) {
+                mediaPlayer.stop();
+                mediaPlayer.release();
+            }
+        }
     }
 }
