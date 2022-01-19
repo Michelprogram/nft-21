@@ -3,12 +3,15 @@ package com.example.nft21;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTCartAdapter;
 import com.example.nft21.user.User;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,13 @@ public class CartActivity extends AppCompatActivity {
         //récupération des infos des achats
         Bundle extras = getIntent().getExtras();
         ArrayList<NFT> nfts = extras.getParcelableArrayList("panier");
+
+        TextView  cartEmptyText = (TextView) findViewById(R.id.cartEmptyTextView);
+        if(nfts.isEmpty()){
+            cartEmptyText.setVisibility(View.VISIBLE);
+        }else{
+            cartEmptyText.setVisibility(View.INVISIBLE);
+        }
 
         //affichage de la liste des nfts
         ListView cartListView = (ListView) findViewById(R.id.cartListView);

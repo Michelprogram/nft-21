@@ -38,6 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cartTitleText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="423dp"
         android:layout_height="170dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,4 +96,20 @@
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/euro" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/cartEmptyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="245dp"
+        android:text="@string/cartEmptyText"
+        android:textColor="#0B0B0B"
+        android:textSize="16sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartListView"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

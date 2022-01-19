@@ -19,4 +19,5 @@
     <string name="oui">oui</string>
     <string name="welcomeBackText">Bonjour</string>
     <string name="shopButtonText">Shop</string>
+    <string name="cartEmptyText">Votre panier est vide et veut manger des nfts...</string>
 </resources>
