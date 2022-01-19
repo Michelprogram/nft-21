@@ -69,22 +69,5 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 }
         });
-
-        //play sound
-        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wii_sports_title);
-        if(!mediaPlayer.isPlaying())
-            mediaPlayer.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (mediaPlayer != null) {
-            mediaPlayer.pause();
-            if (isFinishing()) {
-                mediaPlayer.stop();
-                mediaPlayer.release();
-            }
-        }
     }
 }

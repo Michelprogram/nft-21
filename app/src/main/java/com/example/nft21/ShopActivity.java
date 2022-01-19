@@ -63,7 +63,6 @@ public class ShopActivity extends AppCompatActivity {
         currentUser = extras.getParcelable("currentUser");
 
         ArrayList<NFT> nftArrayList = new ArrayList<>();
-
         panier.put(currentUser,new ArrayList<NFT>());
 
         //---------------------------------------------------------------------
@@ -81,7 +80,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
-                intent.putExtra("NFT", nftAdapter.getItem(i));
+                intent.putExtra("NFT", nftArrayList);
                 startActivityForResult(intent,CART_REQUEST_CODE);
             }
         });
