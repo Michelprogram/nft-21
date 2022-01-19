@@ -47,7 +47,6 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-
         //création du panier
         currentUser = new User("dcaruso8","deriendorian");
         panier.put(currentUser,new ArrayList<NFT>());
@@ -81,9 +80,15 @@ public class ShopActivity extends AppCompatActivity {
         });
 
         //transfer au panier
-        //Intent intent = new Intent(ShopActivity.this,CartActivity.class);
-        //intent.putExtra("panier",nftArrayList);
-        //startActivity(intent);
+        ImageView cartLogo = (ImageView) findViewById(R.id.shopCartLogo);
+        cartLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ShopActivity.this,CartActivity.class);
+                intent.putExtra("panier",nftArrayList);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
