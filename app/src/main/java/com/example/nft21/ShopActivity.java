@@ -80,7 +80,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
-                intent.putExtra("NFT", nftArrayList);
+                intent.putExtra("NFT", nftAdapter.getItem(i));
                 startActivityForResult(intent,CART_REQUEST_CODE);
             }
         });
