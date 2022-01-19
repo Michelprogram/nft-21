@@ -23,7 +23,7 @@
                 android:id="@+id/imgNFTDetail"
                 android:layout_width="500dp"
                 android:layout_height="409dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="108dp"
                 android:contentDescription="TODO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,6 +92,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/descriptionDetail"
                 app:strokeColor="#000000"
                 app:strokeWidth="2dp" />
+
+            <TextView
+                android:id="@+id/detailName"
+                android:layout_width="215dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="193dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="192dp"
+                android:layout_marginBottom="27dp"
+                android:fontFamily="@font/comfortaa"
+                android:text="TextView"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@+id/imgNFTDetail"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

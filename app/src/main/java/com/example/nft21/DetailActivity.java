@@ -28,11 +28,13 @@ public class DetailActivity extends AppCompatActivity {
         ImageView img = findViewById(R.id.imgNFTDetail);
         TextView price = findViewById(R.id.priceDetail);
         TextView description = findViewById(R.id.descriptionDetail);
+        TextView title = findViewById(R.id.detailName);
 
         Picasso.get().load(nft.getImg()).into(img);
 
         price.setText(nft.getPrice().toString());
         description.setText(nft.getDescription());
+        title.setText(nft.getName());
 
         //ajout d'un item dans le panier
         Button addToCartButton = (Button) findViewById(R.id.button_detail);
