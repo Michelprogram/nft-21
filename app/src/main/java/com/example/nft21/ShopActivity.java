@@ -3,6 +3,7 @@ package com.example.nft21;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -30,7 +31,10 @@ import java.util.List;
 import java.util.Map;
 
 public class ShopActivity extends AppCompatActivity {
+    private final int CART_REQUEST_CODE = 42;
+
     private Map<User, ArrayList<NFT>> panier = new HashMap<>();//panier
+    private User currentUser;
     private NFTAdapter nftAdapter;
     private ArrayList<NFT> nftArrayList;
     private ArrayList<NFT> nftArrayListMostViewved;
@@ -43,14 +47,16 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
-        /*
+
         //création du panier
-        User daryl = new User("dcaruso8","deriendorian");
+        currentUser = new User("dcaruso8","deriendorian");
+        panier.put(currentUser,new ArrayList<NFT>());
+         /*
         ArrayList<NFT> nfts = new ArrayList<>();
         nfts.add(new NFT("nft trop bien","img","un nft que nathan adore",0.5,0));
         nfts.add(new NFT("nft bof","img1","un nft que dorian adore",1.6,1));
         nfts.add(new NFT("nft trop nul","img","un nft que emma adore",0.1,0));
-        panier.put(daryl,nfts);*/
+        */
 
         //---------------------------------------------------------------------
 
@@ -70,14 +76,24 @@ public class ShopActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
                 intent.putExtra("NFT", nftAdapter.getItem(i));
-                startActivity(intent);
+                startActivityForResult(intent,CART_REQUEST_CODE);
             }
         });
 
-        //tranfer au panier
+        //transfer au panier
         //Intent intent = new Intent(ShopActivity.this,CartActivity.class);
         //intent.putExtra("panier",nftArrayList);
         //startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode , int resultCode, Intent data ) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK && requestCode == CART_REQUEST_CODE) {
+            //récupération du nft choisi
+            NFT chosenNft = data.getParcelableExtra("chosenNft");
+            this.ajouterAuPanier(currentUser,chosenNft);
+        }
     }
 
     //------------------------------------gestion du panier--------------------------------
