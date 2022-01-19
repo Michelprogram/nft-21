@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.nft21.R;
+import com.squareup.picasso.Picasso;
 //import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,24 +30,28 @@ public class NFTCartAdapter extends ArrayAdapter<NFT> {
         return nfts.size();
     }
 
-    /*
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         View listItem = convertView;
 
         if(listItem == null)
-            listItem = LayoutInflater.from(context).inflate(R.layout.card_layout,parent,false);
+            listItem = LayoutInflater.from(context).inflate(R.layout.cart_card_layout,parent,false);
 
         NFT nft = nfts.get(position);
 
-        ImageView image = listItem.findViewById(R.id.shop_img);
+        //Nft image
+        /*
+        ImageView image = listItem.findViewById(R.id.nftImageView);
+        Picasso.get().load(nft.getImg()).into(image);*/
 
-        Picasso.get().load(nft.getImg()).into(image);
+        //Nft name
+        TextView name = listItem.findViewById(R.id.nftTitleText);
+        name.setText(nft.getName().toString());
 
-        TextView name = listItem.findViewById(R.id.shop_price);
-        name.setText(nft.getPrice().toString());
+        //Nft price
+        TextView price = listItem.findViewById(R.id.nftPriceText);
+        price.setText(nft.getPrice().toString());
 
         return listItem;
-    }*/
+    }
 }
