@@ -3,9 +3,11 @@ package com.example.nft21;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.nft21.NFT.NFT;
+import com.example.nft21.NFT.NFTCartAdapter;
 import com.example.nft21.user.User;
 
 import java.util.ArrayList;
@@ -20,6 +22,11 @@ public class CartActivity extends AppCompatActivity {
         //récupération des infos des achats
         Bundle extras = getIntent().getExtras();
         ArrayList<NFT> nfts = extras.getParcelableArrayList("panier");
+
+        //affichage de la liste des nfts
+        ListView cartListView = (ListView) findViewById(R.id.cartListView);
+        NFTCartAdapter adapter = new NFTCartAdapter(CartActivity.this,nfts);
+        cartListView.setAdapter(adapter);
 
         //calcul du montant total
         double totalETH = this.consulterMontantPanierETH(nfts);
