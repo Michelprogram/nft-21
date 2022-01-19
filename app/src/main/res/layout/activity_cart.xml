@@ -31,19 +31,22 @@
 
     <ListView
         android:id="@+id/cartListView"
-        android:layout_width="426dp"
+        android:layout_width="603dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cartTitleText" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="423dp"
-        android:layout_height="170dp"
+        android:layout_width="599dp"
+        android:layout_height="168dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView

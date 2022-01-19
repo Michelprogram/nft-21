@@ -1,5 +1,6 @@
 package com.example.nft21;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -7,16 +8,31 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTCartAdapter;
 import com.example.nft21.user.User;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 public class CartActivity extends AppCompatActivity {
+
+    private ArrayList<NFT> nfts;
+    private TextView totalEth;
+    private TextView totalEur;
+    private TextView emptyText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,33 +42,29 @@ public class CartActivity extends AppCompatActivity {
 
         //récupération des infos des achats
         Bundle extras = getIntent().getExtras();
-        ArrayList<NFT> nfts = extras.getParcelableArrayList("panier");
+        nfts = extras.getParcelableArrayList("panier");
 
-        TextView  cartEmptyText = (TextView) findViewById(R.id.cartEmptyTextView);
-        if(nfts.isEmpty()){
-            cartEmptyText.setVisibility(View.VISIBLE);
-        }else{
-            cartEmptyText.setVisibility(View.INVISIBLE);
-        }
+        emptyText = findViewById(R.id.cartEmptyTextView);
+
+        if(nfts.isEmpty())
+            emptyText.setVisibility(View.VISIBLE);
+        else
+            emptyText.setVisibility(View.INVISIBLE);
 
         //affichage de la liste des nfts
         ListView cartListView = (ListView) findViewById(R.id.cartListView);
         NFTCartAdapter adapter = new NFTCartAdapter(CartActivity.this,nfts);
         cartListView.setAdapter(adapter);
 
-        //calcul du montant total
-        double totalETH = this.consulterMontantPanierETH(nfts);
-        double totalEuros = this.consulterMontantPanierEuros(nfts);
 
         //mise à jour de la vue
-        TextView totalETHText = (TextView) findViewById(R.id.cartTotalPriceETH);
-        TextView totalEurosText = (TextView) findViewById(R.id.cartTotalPriceEuros);
+        totalEth = findViewById(R.id.cartTotalPriceETH);
+        totalEur = findViewById(R.id.cartTotalPriceEuros);
 
-        totalETHText.setText(Double.toString(totalETH));
-        totalEurosText.setText(Double.toString(totalEuros));
+        convertEthToEur();
     }
 
-    public double consulterMontantPanierETH(ArrayList<NFT> nfts) {
+    private double consulterMontantPanierETH(ArrayList<NFT> nfts) {
         double montant = 0.0;
         for(NFT nft : nfts){
             montant+=nft.getPrice();
@@ -60,13 +72,45 @@ public class CartActivity extends AppCompatActivity {
         return montant;
     }
 
-    public double consulterMontantPanierEuros(ArrayList<NFT> nfts) {
-        double montant = 0.0;
-        for(NFT nft : nfts){
-            montant+=nft.getPrice();
-        }
+    private void convertEthToEur(){
+        OkHttpClient client = new OkHttpClient();
 
-        //convertir en euros !!!
-        return montant;
+        Request request = new Request.Builder()
+                .url("https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=ETH,EUR")
+                .addHeader("Accept", "application/json")
+                .build();
+
+        client.newCall(request)
+                .enqueue(new Callback() {
+                    @Override
+                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                        Toast.makeText(getApplicationContext(),
+                                "Problème avec la conversion entre ETH et EUR", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                        String res = response.body().string();
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                JsonObject jsonObject = JsonParser.parseString(res).getAsJsonObject();
+
+                                Double valueEur = jsonObject.get("EUR").getAsDouble();
+                                Double valueEth = consulterMontantPanierETH(nfts);
+
+                                Double total = valueEth * valueEur;
+
+                                totalEth.setText(String.format("%.2f", valueEth));
+                                totalEur.setText(String.format("%.2f", total));
+
+                            }
+                        });
+
+                    }
+                });
+
     }
 }
