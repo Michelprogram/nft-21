@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -24,6 +26,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
+import com.koushikdutta.ion.builder.Builders;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -42,6 +45,7 @@ import okhttp3.Response;
 
 public class ShopActivity extends AppCompatActivity {
     private final int CART_REQUEST_CODE = 42;
+    private MediaPlayer mediaPlayer;
 
     private Map<User, ArrayList<NFT>> panier = new HashMap<>();//panier
     private User currentUser;
@@ -64,7 +68,6 @@ public class ShopActivity extends AppCompatActivity {
 
         ArrayList<NFT> nftArrayList = new ArrayList<>();
         panier.put(currentUser,new ArrayList<NFT>());
-
         //---------------------------------------------------------------------
         context = getApplicationContext();
 
@@ -95,6 +98,11 @@ public class ShopActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //play sound
+        mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.wii_shop_channel_background_music_hd);
+        if(!mediaPlayer.isPlaying())
+            mediaPlayer.start();
     }
 
     @Override

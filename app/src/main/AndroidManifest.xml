@@ -16,12 +16,6 @@
             android:name=".ProfileActivity"
             android:exported="true" />
         <activity
-            android:name=".SearchActivity"
-            android:exported="true" />
-        <activity
-            android:name=".PublishActivity"
-            android:exported="true" />
-        <activity
             android:name=".DetailActivity"
             android:exported="true" />
         <activity
