@@ -109,13 +109,14 @@ public class ShopActivity extends AppCompatActivity {
     private void requestOpenSea(){
         String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10&collection=alienfrensnft";
 
+        Ion.getDefault(context).getConscryptMiddleware().enable(false);
         Ion.with(context)
                 .load(urlCollection)
                 .asJsonObject()
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
-
+                        System.out.println(result.toString());
                         JsonArray jsonArray = result.getAsJsonArray("assets");
                         Double price = 0.0;
 
