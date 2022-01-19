@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
             users.add(createdUser);
 
             //redirection vers la page profile
-            Intent profileIntent = new Intent(HomeActivity.this,ProfileActivity.class);
+            Intent profileIntent = new Intent(HomeActivity.this,ShopActivity.class);
             profileIntent.putExtra("currentUser",createdUser);
             startActivity(profileIntent);
         }

@@ -50,7 +50,7 @@
                 app:layout_constraintHorizontal_bias="0.161"
                 app:layout_constraintStart_toEndOf="@+id/priceDetail"
                 app:layout_constraintTop_toBottomOf="@+id/imgNFTDetail"
-                app:srcCompat="@drawable/eth" />
+                app:srcCompat="@drawable/ether" />
 
             <TextView
                 android:id="@+id/priceDetail"
@@ -86,13 +86,12 @@
                 android:text="Add to cart"
                 android:textColor="#000000"
                 android:textSize="34sp"
-                app:strokeWidth="2dp"
-                app:strokeColor="#000000"
                 app:iconTint="#000000"
-                app:icon="@drawable/cart_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionDetail" />
+                app:layout_constraintTop_toBottomOf="@+id/descriptionDetail"
+                app:strokeColor="#000000"
+                app:strokeWidth="2dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

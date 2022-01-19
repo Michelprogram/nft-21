@@ -48,21 +48,19 @@ public class ShopActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop);
 
         //création du panier
-        currentUser = new User("dcaruso8","deriendorian");
+        Bundle extras = getIntent().getExtras();
+        currentUser = extras.getParcelable("currentUser");
+
+        ArrayList<NFT> nftArrayList = new ArrayList<>();
+        nftArrayList.add(new NFT("nft trop bien","img","un nft que nathan adore",0.5,0));
+        nftArrayList.add(new NFT("nft bof","img1","un nft que dorian adore",1.6,1));
+        nftArrayList.add(new NFT("nft trop nul","img","un nft que emma adore",0.1,0));
         panier.put(currentUser,new ArrayList<NFT>());
-         /*
-        ArrayList<NFT> nfts = new ArrayList<>();
-        nfts.add(new NFT("nft trop bien","img","un nft que nathan adore",0.5,0));
-        nfts.add(new NFT("nft bof","img1","un nft que dorian adore",1.6,1));
-        nfts.add(new NFT("nft trop nul","img","un nft que emma adore",0.1,0));
-        */
 
         //---------------------------------------------------------------------
-
         context = getApplicationContext();
-        nftArrayList = new ArrayList<>();
 
-        requestOpenSea();
+        //requestOpenSea();
         gridView = findViewById(R.id.shop_grid);
 
         nftAdapter = new NFTAdapter(this, nftArrayList);
@@ -85,7 +83,7 @@ public class ShopActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ShopActivity.this,CartActivity.class);
-                intent.putExtra("panier",nftArrayList);
+                intent.putExtra("panier",panier.get(currentUser));
                 startActivity(intent);
             }
         });
