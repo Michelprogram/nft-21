@@ -3,12 +3,18 @@ package com.example.nft21;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.user.User;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +29,42 @@ public class ShopActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
 
+        /*
         //création du panier
         User daryl = new User("dcaruso8","deriendorian");
         ArrayList<NFT> nfts = new ArrayList<>();
         nfts.add(new NFT("nft trop bien","img","un nft que nathan adore",0.5,0));
         nfts.add(new NFT("nft bof","img1","un nft que dorian adore",1.6,1));
         nfts.add(new NFT("nft trop nul","img","un nft que emma adore",0.1,0));
-        panier.put(daryl,nfts);
+        panier.put(daryl,nfts);*/
+
+        //---------------------------------------------------------------------
+
+        context = getApplicationContext();
+        nftArrayList = new ArrayList<>();
+
+        requestOpenSea();
+        gridView = findViewById(R.id.shop_grid);
+
+        nftAdapter = new NFTAdapter(this, nftArrayList);
+        nftArrayListMostViewved = new ArrayList<>();
+
+        gridView.setAdapter(nftAdapter);
+
+        carouselView = findViewById(R.id.carouselView);
+
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
+
+                intent.putExtra("NFT", nftAdapter.getItem(i));
+
+                startActivity(intent);
+
+            }
+        });
 
         //tranfer au panier
         Intent intent = new Intent(ShopActivity.this,CartActivity.class);
@@ -49,5 +84,79 @@ public class ShopActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void viderPanier(User client) {
         panier.replace(client,new ArrayList<NFT>());
+    }
+
+    private NFTAdapter nftAdapter;
+    private ArrayList<NFT> nftArrayList;
+
+    private ArrayList<NFT> nftArrayListMostViewved;
+
+    private Context context;
+
+    private GridView gridView;
+
+    private CarouselView carouselView;
+
+    private void setCarouselView(){
+        ImageListener imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                Picasso.get().load(nftArrayListMostViewved.get(position).getImg()).into(imageView);
+            }
+        };
+
+        carouselView.setPageCount(nftArrayListMostViewved.size());
+        carouselView.setImageListener(imageListener);
+    }
+
+    private void requestOpenSea(){
+        String urlCollection = "https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10&collection=alienfrensnft";
+
+        Ion.with(context)
+                .load(urlCollection)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+
+                        JsonArray jsonArray = result.getAsJsonArray("assets");
+                        Double price = 0.0;
+
+                        for (int i = 0; i < jsonArray.size(); i++) {
+
+                            JsonObject curent = jsonArray.get(i).getAsJsonObject();
+
+                            JsonObject asset_contract = curent.getAsJsonObject("asset_contract");
+
+                            String description = asset_contract.get("description").getAsString(),
+                                    img = curent.get("image_original_url").getAsString(),
+                                    name = curent.get("name").getAsString();
+
+                            boolean test = curent.get("sell_orders").isJsonNull();
+
+                            if (test) {
+                                price = Utils.randomEthPrice();
+                            } else {
+                                String tempo = curent.getAsJsonArray("sell_orders")
+                                        .get(0)
+                                        .getAsJsonObject()
+                                        .get("current_price")
+                                        .getAsString();
+
+                                price = Double.parseDouble(tempo.substring(0, 2)) / 10;
+                            }
+
+                            NFT nft = new NFT(name, img, description, price, Utils.mostViewed());
+
+
+                            if (nft.getMostViewed() == 0)
+                                nftArrayListMostViewved.add(nft);
+
+                            nftAdapter.add(nft);
+
+                        }
+                        setCarouselView();
+                    }
+                });
     }
 }
