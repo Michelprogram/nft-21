@@ -47,7 +47,7 @@
             card_view:layout_constraintHorizontal_bias="0.118"
             card_view:layout_constraintStart_toEndOf="@+id/shop_price"
             card_view:layout_constraintTop_toBottomOf="@+id/shop_img"
-            card_view:srcCompat="@drawable/eth" />
+            card_view:srcCompat="@drawable/ether" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

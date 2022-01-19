@@ -16,4 +16,5 @@
     <string name="fieldsEmptyText">Veuillez remplir les champs indiqués</string>
     <string name="profileCityText">San Francisco, CA.</string>
     <string name="cartTitleText">Cart</string>
+    <string name="oui">oui</string>
 </resources>

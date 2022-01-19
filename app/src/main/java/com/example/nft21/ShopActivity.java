@@ -13,8 +13,16 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import com.example.nft21.NFT.NFT;
+import com.example.nft21.NFT.NFTAdapter;
+import com.example.nft21.NFT.Utils;
 import com.example.nft21.user.User;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
 import com.squareup.picasso.Picasso;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,6 +31,12 @@ import java.util.Map;
 
 public class ShopActivity extends AppCompatActivity {
     private Map<User, ArrayList<NFT>> panier = new HashMap<>();//panier
+    private NFTAdapter nftAdapter;
+    private ArrayList<NFT> nftArrayList;
+    private ArrayList<NFT> nftArrayListMostViewved;
+    private Context context;
+    private GridView gridView;
+    private CarouselView carouselView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,28 +62,22 @@ public class ShopActivity extends AppCompatActivity {
 
         nftAdapter = new NFTAdapter(this, nftArrayList);
         nftArrayListMostViewved = new ArrayList<>();
-
         gridView.setAdapter(nftAdapter);
-
         carouselView = findViewById(R.id.carouselView);
-
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
-
+                Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
                 intent.putExtra("NFT", nftAdapter.getItem(i));
-
                 startActivity(intent);
-
             }
         });
 
         //tranfer au panier
-        Intent intent = new Intent(ShopActivity.this,CartActivity.class);
-        intent.putExtra("panier",nfts);
-        startActivity(intent);
+        //Intent intent = new Intent(ShopActivity.this,CartActivity.class);
+        //intent.putExtra("panier",nftArrayList);
+        //startActivity(intent);
     }
 
     //------------------------------------gestion du panier--------------------------------
@@ -85,17 +93,6 @@ public class ShopActivity extends AppCompatActivity {
     public void viderPanier(User client) {
         panier.replace(client,new ArrayList<NFT>());
     }
-
-    private NFTAdapter nftAdapter;
-    private ArrayList<NFT> nftArrayList;
-
-    private ArrayList<NFT> nftArrayListMostViewved;
-
-    private Context context;
-
-    private GridView gridView;
-
-    private CarouselView carouselView;
 
     private void setCarouselView(){
         ImageListener imageListener = new ImageListener() {

@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/black_button.xml" value="0.36875" />
+        <entry key="app/src/main/res/drawable/my_custom_background.xml" value="0.36875" />
         <entry key="app/src/main/res/drawable/rounded_corners_image.xml" value="0.36875" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.35260416666666666" />
