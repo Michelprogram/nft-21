@@ -14,11 +14,16 @@ Si toute fois ça ne marche pas vous pouvez accéder au prototype dans le dossie
 
 L'application NFT21 est une marketplace de NFT (vente d'image) récupéré sur l'api openSea. Dans cette application l'utilisateur peut 
 
-1. Se connecter 
-2. S'enregistrer
+1. Se connecter / S'enregistrer
+2. Consulter son profil
 3. Parcourir le shop
-4. Visualiser une NFT
-5. Ajouter une NFT à la marketplace
-6. Faire une recherche avec un mot clé
-7. Ajouter une NFT au panier
-8. Voir son profil
+4. Visualiser une NFT en détail
+5. Ajouter une NFT au panier
+
+# Navigation
+Voici les étapes de navigation : 
+1. L'utilisateur se connecte/ s'enregistre et atterit sur sa page de profil
+2. En cliquant sur le bouton "shop" l'utilisateur accède au magasin
+3. Sur le magasin, il peut faire défiler différents NFTs, et cliquer sur chacun d'eux pour afficher une vue détaillée
+4. Sur la vue détaillé, le bouton "ajouter au panier" ajoute l'article dans le panier de l'utilisateur, et le fait revenir au magasin.
+5. S'il souhaite consulter son panier, dans le magasin, il clique sur l'îcone de chariot à côté du titre "Shop", ce qui l'amène à la vue panier où il consulte les articles achetés et le total en etherum et en euros.
