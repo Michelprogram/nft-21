@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">NFT21</string>
+    <string name="appTitleText">NFT 21</string>
+    <string name="registerButtonText">Register</string>
+    <string name="loginButtonText">LOG IN</string>
+    <string name="creditsText"><![CDATA[Daryl Caruso & Dorian Gauron]]></string>
+    <string name="registerTitleText">Register</string>
+    <string name="emailHint">jane@doe.com</string>
+    <string name="passwordHint">password</string>
+    <string name="registerNextButtonText">Next</string>
+    <string name="userNameHint">username</string>
+    <string name="signUpButtonText">SIGN UP</string>
+    <string name="incorrectPasswordText">Le mot de passe est incorrect, veuillez réessayer</string>
+    <string name="unknownUsernameText">Le nom d\'utilisateur n\'existe pas, veuillez réessayer</string>
+    <string name="usernameTakenText">Ce nom d\'utilisateur est déjà pris, veuillez en choisir un autre</string>
+    <string name="fieldsEmptyText">Veuillez remplir les champs indiqués</string>
+    <string name="profileCityText">San Francisco, CA.</string>
+    <string name="cartTitleText">Cart</string>
+    <string name="oui">oui</string>
+    <string name="welcomeBackText">Bonjour</string>
+    <string name="shopButtonText">Shop</string>
+    <string name="cartEmptyText">Votre panier est vide et veut manger des nfts...</string>
 </resources>
