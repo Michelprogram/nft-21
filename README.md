@@ -22,7 +22,7 @@ L'application NFT21 est une marketplace de NFT (vente d'image) récupéré sur l
 
 # Navigation
 Voici les étapes de navigation : 
-1. L'utilisateur se connecte/ s'enregistre et atterit sur sa page de profil
+1. L'utilisateur se connecte/ s'enregistre et atterit sur sa page de profil (profil par défaut username : dcaruso8 password : deriendorian)
 2. En cliquant sur le bouton "shop" l'utilisateur accède au magasin
 3. Sur le magasin, il peut faire défiler différents NFTs, et cliquer sur chacun d'eux pour afficher une vue détaillée
 4. Sur la vue détaillé, le bouton "ajouter au panier" ajoute l'article dans le panier de l'utilisateur, et le fait revenir au magasin.
