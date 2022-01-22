@@ -14,10 +14,8 @@ public class Utils {
     }
 
     public static Integer mostViewed(){
-        Integer MAX = 5;
+        Integer MAX = 3;
         Integer result = (int)(Math.random() * MAX);
-
-        System.out.println(result);
 
         return (result == MAX - 1) ? 1 : 0;
     }

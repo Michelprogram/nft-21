@@ -10,14 +10,17 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.nft21.NFT.NFT;
 import com.example.nft21.NFT.NFTAdapter;
@@ -47,7 +50,7 @@ public class ShopActivity extends AppCompatActivity {
     private User currentUser;
     private NFTAdapter nftAdapter;
     private Context context;
-    private GridView gridView;
+    private ListView listView;
 
     private ImageSlider imageSlider;
     private List<SlideModel> slideModels;
@@ -68,20 +71,30 @@ public class ShopActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         requestOpenSeaV2();
-        gridView = findViewById(R.id.shop_grid);
+        listView = findViewById(R.id.shop_list);
 
         nftAdapter = new NFTAdapter(this, nftArrayList);
-        gridView.setAdapter(nftAdapter);
+        listView.setAdapter(nftAdapter);
 
         imageSlider = findViewById(R.id.image_slider);
         slideModels = new ArrayList<>();
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
                 intent.putExtra("NFT", nftAdapter.getItem(i));
                 startActivityForResult(intent,CART_REQUEST_CODE);
+            }
+        });
+
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            // Setting on Touch Listener for handling the touch inside ScrollView
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Disallow the touch request for parent scroll on touch of child view
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
             }
         });
 
@@ -192,9 +205,7 @@ public class ShopActivity extends AppCompatActivity {
 
                                     NFT nft = new NFT(name, img, description, price, Utils.mostViewed());
 
-
-
-                                    if (nft.getMostViewed() == 0)
+                                    if (nft.getMostViewed() == 1)
                                         slideModels.add(new SlideModel(nft.getImg()));
 
 
@@ -214,6 +225,33 @@ public class ShopActivity extends AppCompatActivity {
     private void setSlider(){
 
         imageSlider.setImageList(slideModels, true);
+
+        imageSlider.setItemClickListener(new ItemClickListener() {
+            @Override
+            public void onItemSelected(int i) {
+
+                int j = 0;
+                boolean flag = false;
+
+                NFT nft = null;
+
+                String link = slideModels.get(i).getImageUrl();
+
+                while(!flag){
+                    nft = nftAdapter.getItem(j);
+                    if (nft.getImg().equals(link)){
+                        flag = true;
+                    }
+                    j++;
+                }
+
+                Intent intent = new Intent(ShopActivity.this, DetailActivity.class);
+                intent.putExtra("NFT", nft);
+                startActivityForResult(intent,CART_REQUEST_CODE);
+
+            }
+        });
+
     }
 
 
